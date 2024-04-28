@@ -13,7 +13,7 @@ try {
 }
 
 app.listen(config.server.port, config.server.host, () => {
-    console.log(`Server is running on http://${config.server.host}:${config.server.port}`);
+    console.log(`Server is running on http://${config.server.host}:${config.server.port}/accounts`);
 });
 
 process.on('uncaughtException', (err) => {
