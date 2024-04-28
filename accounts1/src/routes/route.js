@@ -13,7 +13,7 @@ router.get('/accounts', (req, res) => {
         res.render('list', { accounts: data.map((item) => item.toJSON()) });
     })
     .catch((err) => {
-        res.render('error', { message: '查询失败', error: err });
+        res.status(500).render('error', { message: '查询失败', error: err });
     })
 });
 
@@ -35,7 +35,7 @@ router.post('/accounts', (req, res) => {
         res.render('success', { msg: '添加成功', url: '/accounts' });
     })
     .catch((err) => {
-        res.render('error', { message: '添加失败', error: err});
+        res.status(500).render('error', { message: '添加失败', error: err});
     })
     
 });
@@ -53,7 +53,7 @@ router.get('/accounts/:id', (req, res, next) => {
         res.render('success', { msg: '删除成功', url: '/accounts' });
     })
     .catch((err) => {
-        res.render('error', { message: '删除失败', error: err});
+        res.status(500).render('error', { message: '删除失败', error: err});
     })
 })
 
