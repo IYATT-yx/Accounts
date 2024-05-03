@@ -16,7 +16,7 @@ app.set('views', viewsPath);
 app.use(express.urlencoded({ extended: false }));
 
 // 路由
-app.use(router)
+app.use(config.baseUrl, router)
 
 // 静态资源
 app.use(express.static(publicPath));
