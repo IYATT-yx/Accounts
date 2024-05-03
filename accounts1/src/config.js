@@ -17,10 +17,13 @@ const database = {
     databaseName: 'accounts_db' // 数据库名
 }
 
+const baseUrl = '/accounts'
+
 const config = {
     __dirname,
     server,
-    database
+    database,
+    baseUrl
 }
 
 export default config;
