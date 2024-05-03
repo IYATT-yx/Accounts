@@ -1,10 +1,31 @@
+import config from "../config.js"
 
 import { Sequelize } from "sequelize";
-import getDb from "../database/db.js";
 
-const db = await getDb();
+const sequelize = new Sequelize(
+    config.database.databaseName,
+    config.database.user,
+    config.database.password,
+    {
+        host: config.database.host,
+        dialect: 'mysql'
+    }
+);
 
-class Accounts extends Sequelize.Model {}
+export function authenticateDatabase() {
+    const p = new Promise((resolve, reject) => {
+        sequelize.authenticate()
+            .then(() => {
+                resolve()
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+    return p
+}
+
+export class Accounts extends Sequelize.Model {}
 Accounts.init({
     id: {
         type: Sequelize.INTEGER,
@@ -31,9 +52,7 @@ Accounts.init({
         type: Sequelize.TEXT
     }
 }, {
-    sequelize: db,
+    sequelize: sequelize,
     tableName: 'accounts_tb',
     timestamps: false
 });
-
-export default Accounts;
