@@ -1,4 +1,4 @@
-import Accounts from '../models/accountsModel.js';
+import { Accounts } from '../models/accountsModel.js';
 
 import express from 'express';
 import { Op } from 'sequelize';
@@ -7,7 +7,7 @@ import { Op } from 'sequelize';
 const router = express.Router();
 
 // 账单页面
-router.get('/accounts', (req, res) => {
+router.get('/', (req, res) => {
     Accounts.findAll()
     .then((data) => {
         res.render('list', { accounts: data.map((item) => item.toJSON()) });
@@ -18,12 +18,12 @@ router.get('/accounts', (req, res) => {
 });
 
 // 创建账单页面
-router.get('/accounts/create', (req, res, next) => {
+router.get('/create', (req, res, next) => {
     res.render('create');
 });
 
 // 创建账单请求响应
-router.post('/accounts', (req, res) => {
+router.post('/', (req, res) => {
     Accounts.create({
         title: req.body.title,
         time: req.body.time,
@@ -41,7 +41,7 @@ router.post('/accounts', (req, res) => {
 });
 
 // 删除账单请求响应
-router.get('/accounts/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
     Accounts.destroy({
         where: {
             id: {
