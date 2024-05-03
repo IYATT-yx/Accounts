@@ -45,20 +45,6 @@ Node.js 模块
 CREATE DATABASE accounts_db; 
 ```
 
-创建一张表
-```mysql
-USE accounts_db;
-
-CREATE Table accounts_tb (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL COMMENT '事项名称',
-    time DATETIME NOT NULL COMMENT '事项时间',
-    type BOOLEAN NOT NULL COMMENT '事项类型',
-    account DECIMAL(10, 2) NOT NULL COMMENT '事项金额',
-    remarks TEXT COMMENT '事项备注'
-);
-```
-
 ## 配置文件
 
 `./src/config.js` 为配置文件，数据库的连接信息和服务器的监听信息在里面配置  
